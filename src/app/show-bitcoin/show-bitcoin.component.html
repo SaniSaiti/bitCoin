@@ -1,0 +1,48 @@
+<h1>Sani BitCoin Versuch</h1>
+
+
+<div *ngIf="bitcoinData" class="tablas">
+    <table>
+        <thead>
+            <th> ID</th>
+            <th>Name</th>
+            <th> Refresh Day</th>
+        </thead>
+        <tbody>
+            <td> {{ bitcoinData.dataset.id }}</td>
+            <td>{{ bitcoinData.dataset.name }} </td>
+            <td> {{ bitcoinData.dataset.refreshed_at }} </td>
+        </tbody>
+    </table>
+
+
+    <div>
+
+        <table>
+            <th *ngFor="let valueText of bitcoinData.dataset.column_names">{{ valueText }}</th>
+
+            <tbody *ngFor="let value of bitcoinData.dataset.data, let i = index">
+                <td *ngFor="let value3 of value let i = index">
+
+                    {{ value3 }}
+
+                </td>
+
+                {{i}}
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+
+<div>
+    <div>
+        <div style="display: block">
+
+            <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+        </div>
+        <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+    </div>
